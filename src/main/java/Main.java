@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
+
+    public static String capitalize(String str)
+    {
+        if(str == null || str.length()<=1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
         public static void main(String[] args) {
             int userChoice = 0;
             Scanner input = new Scanner(System.in);
@@ -45,8 +51,8 @@ public class Main {
                     case 3:
                         System.out.print("Enter product name to check: ");
                         String checkProductName = input.nextLine();
-                        if (inventory.inventoryMap.containsKey(checkProductName)) {
-                            System.out.println(checkProductName + " is available with quantity: " + inventory.inventoryMap.get(checkProductName));
+                        if (inventory.inventoryHashMap.containsKey(checkProductName)) {
+                            System.out.println(checkProductName + " is available with quantity: " + inventory.inventoryHashMap.get(checkProductName));
                         } else {
                             System.out.println(checkProductName + " is not available in the inventory.");
                         }
