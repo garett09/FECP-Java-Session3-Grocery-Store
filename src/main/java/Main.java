@@ -34,11 +34,12 @@ public class Main {
                 switch(userChoice) {
                     case 1:
                         System.out.println("Viewing Inventory...");
-                        inventory.viewInventory();
+                        System.out.println(inventory.viewInventory());
                         break;
                     case 2:
                         System.out.print("Enter product name: ");
                         String productName = input.nextLine();
+                        productName = capitalize(productName);
                         System.out.print("Enter quantity: ");
                         while (!input.hasNextInt()) {
                             System.out.println("Invalid Input. Please input a whole number");
@@ -51,12 +52,27 @@ public class Main {
                     case 3:
                         System.out.print("Enter product name to check: ");
                         String checkProductName = input.nextLine();
-                        if (inventory.inventoryHashMap.containsKey(checkProductName)) {
-                            System.out.println(checkProductName + " is available with quantity: " + inventory.inventoryHashMap.get(checkProductName));
-                        } else {
-                            System.out.println(checkProductName + " is not available in the inventory.");
-                        }
+                        checkProductName = capitalize(checkProductName);
+                        inventory.checkProduct(checkProductName);
                         break;
+                    case 4:
+                        System.out.print("Enter product name to update: ");
+                        String updateProductName = input.nextLine();
+                        updateProductName = capitalize(updateProductName);
+                        if (!inventory.inventoryHashMap.containsKey(updateProductName)) {
+                            System.out.println("Product not found in inventory.");
+                            break;
+                        }
+                        System.out.print("Enter new quantity: ");
+                        while (!input.hasNextInt()) {
+                            System.out.println("Invalid Input. Please input a whole number");
+                            input.next();
+                            System.out.print("Enter new quantity: ");
+                        }
+                        int newQuantity = input.nextInt();
+                        String updateResult = inventory.updateStock(updateProductName, newQuantity);
+                        System.out.println(updateResult);
+
                 }
             }
 
