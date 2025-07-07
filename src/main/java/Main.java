@@ -14,6 +14,7 @@ public class Main {
 
             inventory.addProduct("Apples", 10);
 
+
             while(userChoice <=7){
                 System.out.println("=== Buni's Grocery Inventory Menu ===");
                 System.out.println("1. View Inventory");
@@ -53,7 +54,8 @@ public class Main {
                         System.out.print("Enter product name to check: ");
                         String checkProductName = input.nextLine();
                         checkProductName = capitalize(checkProductName);
-                        inventory.checkProduct(checkProductName);
+                        String checkResult = inventory.checkProduct(checkProductName);
+                        System.out.println(checkResult);
                         break;
                     case 4:
                         System.out.print("Enter product name to update: ");
@@ -72,13 +74,27 @@ public class Main {
                         int newQuantity = input.nextInt();
                         String updateResult = inventory.updateStock(updateProductName, newQuantity);
                         System.out.println(updateResult);
+                        break;
+                    case 5:
+                        System.out.print("Enter product name to remove: ");
+                        String removeProductName = input.nextLine();
+                        removeProductName = capitalize(removeProductName);
+                        if (!inventory.inventoryHashMap.containsKey(removeProductName)) {
+                            System.out.println("Product not found in inventory.");
+                            break;
+                        }
+                        String removeResult = inventory.removeProduct(removeProductName);
+                        System.out.println(removeResult);
+                        break;
+                    case 6:
+                        System.out.println("Exiting the program. Thank you for using Buni's Grocery Inventory!");
+                        return;
+                    default:
+                        System.out.println("Invalid option. Please choose between 1 and 6.");
+                        break;
 
+                }
                 }
             }
 
-
-
-
-
     }
-}

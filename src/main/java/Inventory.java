@@ -58,5 +58,17 @@ public class Inventory {
                 return productName + " is not available in the inventory.";
             }
         }
-}
+
+        public String removeProduct(String productName) {
+            if (productName == null || productName.isEmpty()) {
+                return "Product name cannot be empty.";
+            }
+            if (inventoryHashMap.containsKey(productName)) {
+                inventoryHashMap.remove(productName);
+                return "Removed " + productName + " from the inventory.";
+            } else {
+                return productName + " is not available in the inventory.";
+            }
+        }
+    }
 
