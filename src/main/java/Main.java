@@ -48,7 +48,8 @@ public class Main {
                             System.out.print("Enter quantity: ");
                         }
                         int quantity = input.nextInt();
-                        inventory.addProduct(productName, quantity);
+                        String addResult = inventory.addProduct(productName, quantity);
+                        System.out.println(addResult);
                         break;
                     case 3:
                         System.out.print("Enter product name to check: ");
