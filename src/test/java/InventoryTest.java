@@ -144,14 +144,4 @@ class InventoryTest {
         assertEquals("Pizza is not available in the inventory.", result);
         assertFalse(inventory.inventoryHashMap.containsKey("Pizza"));
     }
-
-
-
-
-
-
-
-
-
-
 }
