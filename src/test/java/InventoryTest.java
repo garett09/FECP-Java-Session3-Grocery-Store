@@ -36,7 +36,7 @@ class InventoryTest {
     }
 
     @Test
-    //Adding a new product that already exists but the quantity will override the old quantity.
+    //Adding a new product that already exists, but the quantity will override the old quantity.
     void testAddMilkProductAlreadyExistsOverride() {
         inventory.addProduct("Milk", 10);
         String result = inventory.addProduct("Milk", 20);
@@ -75,7 +75,42 @@ class InventoryTest {
         assertEquals("Ice Cream is not available in the inventory.", result);
     }
 
+    @Test
+    //Update an existing product with a valid quantity
+    void testUpdateAnExistingProductWithAValidQuantity(){
+        inventory.addProduct("Peanut", 30);
+        String result = inventory.updateStock("Peanut", 40);
+        assertEquals("Updated Peanut to quantity: 40",result);
+    }
+
+    @Test
+    //Update bread to 25. Confirm the new quantity is stored
+    void testUpdateBreadTo25(){
+        inventory.addProduct("Bread", 10);
+        System.out.println(inventory.checkProduct("Bread"));
+        inventory.updateStock("Bread", 25);
+        String result = inventory.checkProduct("Bread");
+        assertEquals("Product: Bread, Quantity: 25", result);
+    }
+
+    @Test
+    //Check for a product that does not exist.
+    void testUpdateProductThatDoesNotExist() {
+        String result = inventory.updateStock("Chocolate", 15);
+        assertEquals("Chocolate is not available in the inventory.", result);
+    }
+
+    @Test
+    //Try updating tofu. Expect Product not found
+    void testUpdateTofuProductNotFound() {
+        String result = inventory.updateStock("Tofu", 10);
+        assertEquals("Tofu is not available in the inventory.", result);
+    }
+
     
+
+
+
 
 
 
