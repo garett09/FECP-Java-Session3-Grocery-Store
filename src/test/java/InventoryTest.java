@@ -66,6 +66,7 @@ class InventoryTest {
     void testProductThatDoesNotExist(){
         String result = inventory.checkProduct("Watermelon");
         assertEquals("Watermelon is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Watermelon"));
     }
 
     @Test
@@ -73,6 +74,7 @@ class InventoryTest {
     void testCheckIceCreamProductNotFound() {
         String result = inventory.checkProduct("Ice Cream");
         assertEquals("Ice Cream is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Ice Cream"));
     }
 
     @Test
@@ -98,6 +100,7 @@ class InventoryTest {
     void testUpdateProductThatDoesNotExist() {
         String result = inventory.updateStock("Chocolate", 15);
         assertEquals("Chocolate is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Chocolate"));
     }
 
     @Test
@@ -105,9 +108,45 @@ class InventoryTest {
     void testUpdateTofuProductNotFound() {
         String result = inventory.updateStock("Tofu", 10);
         assertEquals("Tofu is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Tofu"));
     }
 
-    
+    @Test
+    //Remove an existing product from the inventory
+    void testRemoveExistingProduct() {
+        inventory.addProduct("Coconuts", 12);
+        String result = inventory.removeProduct("Coconuts");
+        assertEquals("Removed Coconuts from the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Coconuts"));
+    }
+
+    @Test
+    //Remove Eggs. Expect "Product removed" and not in the map anymore
+    void testRemoveEggsProduct() {
+        inventory.addProduct("Eggs", 20);
+        String result = inventory.removeProduct("Eggs");
+        assertEquals("Removed Eggs from the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Eggs"));
+    }
+
+    @Test
+    //Remove a product that does not exist in the inventory.
+    void testRemoveProductThatDoesNotExist() {
+        String result = inventory.removeProduct("Fish");
+        assertEquals("Fish is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Fish"));
+    }
+
+    @Test
+    //Remove pizza. Expect product not found.
+    void testRemovePizzaProductNotFound() {
+        String result = inventory.removeProduct("Pizza");
+        assertEquals("Pizza is not available in the inventory.", result);
+        assertFalse(inventory.inventoryHashMap.containsKey("Pizza"));
+    }
+
+
+
 
 
 
