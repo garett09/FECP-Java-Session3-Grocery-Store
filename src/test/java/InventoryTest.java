@@ -26,6 +26,14 @@ class InventoryTest {
         String result = inventory.addProduct("Mango", 0);
         assertEquals("Invalid quantity. Please enter a positive number.", result);
     }
+    @Test
+    //Adding a new product that already exists in the inventory.
+    void testAddBananaProductAlreadyExists() {
+        inventory.addProduct("Orange", 20);
+        String result = inventory.addProduct("Orange", 15);
+        System.out.println(inventory.viewInventory());
+        assertEquals("Orange already exists in the inventory. Please update the stock instead.", result);
+    }
     
 
 
